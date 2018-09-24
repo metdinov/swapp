@@ -43,7 +43,8 @@ def find_common_movies(all_movies):
 def get_persons_movies(person):
     req = Request(SEARCH_URL + person, headers=AGENT)
     with urlopen(req, timeout=TIMEOUT) as response:
-        data = json.load(response)
+        json_str = response.read().decode('utf-8')
+        data = json.loads(json_str)
     if data['count'] != 1:
         raise PersonNotFoundException(person, "was not found")
     results = data['results'][0]
