@@ -13,7 +13,7 @@ SEARCH_URL = PEOPLE_URL + '/?search='
 
 # crawler parameters
 AGENT = {'User-Agent': 'swapp'}
-TIMEOUT = 0.5
+TIMEOUT = 1
 
 
 class PersonNotFoundException(Exception):
