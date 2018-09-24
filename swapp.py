@@ -27,13 +27,17 @@ def run(persons):
         print(e)
         sys.exit()
 
-    common_movies = reduce(set.intersection, all_movies)
+    common_movies = find_common_movies(all_movies)
 
     if common_movies:
         for movie in common_movies:
             print(movie)
     else:
         print("The persons given do not appear together in a film.")
+
+
+def find_common_movies(all_movies):
+    return reduce(set.intersection, all_movies)
 
 
 def get_persons_movies(person):
