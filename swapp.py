@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import json
 import sys
 from functools import reduce
@@ -30,11 +31,10 @@ def run(persons):
     common_movies = reduce(set.intersection, all_movies)
 
     if common_movies:
-        print("The persons given appear in the following films:")
         for movie in common_movies:
             print(movie)
     else:
-        print("The persons given do not appear together film.")
+        print("The persons given do not appear together in a film.")
 
 
 def get_persons_movies(person):
