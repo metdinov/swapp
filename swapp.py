@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import argparse
 import json
 import sys
 from functools import reduce
@@ -58,4 +57,9 @@ def get_movie_titles(film_urls):
 
 
 if __name__ == '__main__':
-    run(['luke', 'leia'])
+    import argparse
+    parser = argparse.ArgumentParser(
+        description='Finds the films all given Star Wars characters appear in together.')
+    parser.add_argument('persons', metavar='person', nargs='+')
+    args = parser.parse_args()
+    run(args.persons)
