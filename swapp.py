@@ -56,7 +56,8 @@ def get_movie_titles(film_urls):
     for url in film_urls:
         req = Request(url, headers=AGENT)
         with urlopen(req, timeout=TIMEOUT) as response:
-            movie = json.load(response)
+            json_str = response.read().decode('utf-8')
+            movie = json.loads(json_str)
         movie_titles.add(movie['title'])
     return movie_titles
 
@@ -64,7 +65,7 @@ def get_movie_titles(film_urls):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(
-        description='Finds the films all given Star Wars characters appear in together.')
+        description='Finds the films all given Star Wars characters appear together in.')
     parser.add_argument('persons', metavar='person', nargs='+')
     args = parser.parse_args()
     run(args.persons)
