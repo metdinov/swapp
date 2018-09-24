@@ -45,3 +45,11 @@ class TestSwapp(unittest.TestCase):
         }
 
         self.assertEqual(swapp.get_persons_movies("biggs"), titles)
+
+    def test_non_existing_person(self):
+        self.assertRaises(swapp.PersonNotFoundException,
+                          swapp.get_persons_movies, "EugeneFama")
+
+
+if __name__ == '__main__':
+    unittest.main()
