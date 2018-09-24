@@ -43,7 +43,8 @@ def get_persons_movies(person):
         data = json.load(response)
     if data['count'] != 1:
         raise PersonNotFoundException(person, "was not found")
-    return get_movie_titles(data['films'])
+    results = data['results'][0]
+    return get_movie_titles(results['films'])
 
 
 def get_movie_titles(film_urls):

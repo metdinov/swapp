@@ -27,3 +27,21 @@ class TestSwapp(unittest.TestCase):
         }
 
         self.assertEqual(swapp.get_movie_titles(film_urls), titles)
+
+    def test_get_lukes_movies(self):
+        titles = {
+            "The Empire Strikes Back",
+            "Revenge of the Sith",
+            "Return of the Jedi",
+            "A New Hope",
+            "The Force Awakens"
+        }
+
+        self.assertEqual(swapp.get_persons_movies("luke"), titles)
+
+    def test_get_biggs_movies(self):
+        titles = {
+            "A New Hope"
+        }
+
+        self.assertEqual(swapp.get_persons_movies("biggs"), titles)
