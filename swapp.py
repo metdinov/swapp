@@ -41,9 +41,9 @@ def run(names):
 
 def get_persons_data(name):
     query = fetch_and_parse_data(SEARCH_URL + name)
-    person_data = query['results'][0]
+    person_data = query['results']
     if person_data:
-        return person_data
+        return person_data[0]
     else:
         raise PersonNotFoundException(name, "was not found")
 

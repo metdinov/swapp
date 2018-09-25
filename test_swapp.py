@@ -4,59 +4,48 @@ import swapp
 
 class TestSwapp(unittest.TestCase):
 
-    def test_get_single_movie_title(self):
-        film_url = ["https://swapi.co/api/films/5/"]
-        title = {"Attack of the Clones"}
-        self.assertEqual(swapp.get_movie_titles(film_url), title)
+    @classmethod
+    def setUpClass(cls):
+        cls.all_films = swapp.get_all_films()
 
-    def test_get_many_movie_titles(self):
-        film_urls = [
-            "https://swapi.co/api/films/2/",
-            "https://swapi.co/api/films/6/",
-            "https://swapi.co/api/films/3/",
-            "https://swapi.co/api/films/1/",
-            "https://swapi.co/api/films/7/"
-        ]
-        titles = {
-            "The Empire Strikes Back",
-            "Revenge of the Sith",
-            "Return of the Jedi",
-            "A New Hope",
-            "The Force Awakens"
-        }
-        self.assertEqual(swapp.get_movie_titles(film_urls), titles)
+    def test_get_all_films(self):
+        self.assertEqual(len(TestSwapp.all_films), 7)
+        first_film_title = TestSwapp.all_films[0]['title']
+        self.assertEqual(first_film_title, 'A New Hope')
 
-    def test_get_lukes_movies(self):
-        titles = {
-            "The Empire Strikes Back",
-            "Revenge of the Sith",
-            "Return of the Jedi",
-            "A New Hope",
-            "The Force Awakens"
-        }
-        self.assertEqual(swapp.get_persons_movies("luke"), titles)
+    def test_get_lukes_data(self):
+        lukes_data = swapp.get_persons_data('luke')
+        self.assertEqual(lukes_data['name'], 'Luke Skywalker')
+        self.assertEqual(lukes_data['gender'], 'male')
+        self.assertEqual(lukes_data['url'], 'https://swapi.co/api/people/1/')
 
-    def test_get_biggs_movies(self):
-        titles = {
-            "A New Hope"
-        }
-        self.assertEqual(swapp.get_persons_movies("biggs"), titles)
+    def test_get_leias_data(self):
+        leias_data = swapp.get_persons_data('leia')
+        self.assertEqual(leias_data['name'], 'Leia Organa')
+        self.assertEqual(leias_data['gender'], 'female')
+        self.assertEqual(leias_data['url'], 'https://swapi.co/api/people/5/')
 
-    def test_non_existing_person(self):
+    def test_get_non_existing_person(self):
         self.assertRaises(swapp.PersonNotFoundException,
-                          swapp.get_persons_movies, "EugeneFama")
+                          swapp.get_persons_data, "EugeneFama")
 
-    def test_some_shared_movies(self):
-        some_movies = iter([{"The Empire Strikes Back", "A New Hope"},
-                            {"The Force Awakens", "The Empire Strikes Back"},
-                            {"The Empire Strikes Back", "The Force Awakens"}])
-        self.assertEqual(swapp.find_common_movies(
-            some_movies), {"The Empire Strikes Back"})
+    def test_get_biggs_id(self):
+        biggs_data = swapp.get_persons_data('biggs')
+        self.assertEqual(swapp.get_persons_id(biggs_data), '9')
 
-    def test_no_shared_movies(self):
-        some_movies = iter([{"Revenge of the Sith", "A New Hope"},
-                            {"The Force Awakens", "Return of the Jedi"}])
-        self.assertEqual(swapp.find_common_movies(some_movies), set())
+    def test_get_obiwan_id(self):
+        obiwan_data = swapp.get_persons_data('obi')
+        self.assertEqual(swapp.get_persons_id(obiwan_data), '10')
+
+    def test_find_shared_films(self):
+        ids = {'5', '9'}  # Leia & Biggs
+        self.assertEqual(swapp.find_common_films(
+            TestSwapp.all_films, ids), ["A New Hope"])
+
+    def test_no_shared_films(self):
+        ids = {'11', '9'}  # Anakin & Biggs
+        self.assertEqual(swapp.find_common_films(
+            TestSwapp.all_films, ids), [])
 
 
 if __name__ == '__main__':
