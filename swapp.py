@@ -80,10 +80,9 @@ def fetch_and_parse_data(url, agent=AGENT, timeout=TIMEOUT):
 
 
 if __name__ == '__main__':
-    # import argparse
-    # parser = argparse.ArgumentParser(
-    #     description='Finds the films all given Star Wars characters appear together in.')
-    # parser.add_argument('persons', metavar='person', nargs='+')
-    # args = parser.parse_args()
-    # run(args.persons)
-    run(["luke", "leia"])
+    import argparse
+    parser = argparse.ArgumentParser(
+        description='Finds the films all given Star Wars characters appear together in.')
+    parser.add_argument('persons', metavar='person', nargs='+')
+    args = parser.parse_args()
+    run(args.persons)
