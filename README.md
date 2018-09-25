@@ -1,6 +1,6 @@
 # Swapp
 
-Find all movies where given Star Wars characters appear together in.  
+Find all movies in which given Star Wars characters appear together in.  
 Requires Python 3.X (More info at https://www.python.org/about/gettingstarted/).  
 Data provided by [The Star Wars API](https://swapi.co/)
 
