@@ -25,4 +25,4 @@ Be warned that tests hit the API endpoint, so it might take some time.
 
 ## Demo
 
-[![asciicast](https://asciinema.org/a/u9OsDsjn5WsjDaeXEk20N629w.png)](https://asciinema.org/a/u9OsDsjn5WsjDaeXEk20N629w)
+[![asciicast](https://asciinema.org/a/uImrF5Owjg10Dk2DRv7ZbKkX8.png)](https://asciinema.org/a/uImrF5Owjg10Dk2DRv7ZbKkX8?speed=3)
