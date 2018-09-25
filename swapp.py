@@ -7,7 +7,7 @@ from functools import reduce
 from urllib.request import Request, urlopen
 
 # API parameters
-ENDPOINT = 'http://swapi.co/api'
+ENDPOINT = 'https://swapi.co/api'
 FILMS_URL = ENDPOINT + '/films'
 PEOPLE_URL = ENDPOINT + '/people'
 SEARCH_URL = PEOPLE_URL + '/?search='
